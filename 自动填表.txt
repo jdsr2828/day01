@@ -1,0 +1,63 @@
+作者：简单
+链接：https://zhuanlan.zhihu.com/p/497882415
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+## 导入模块
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+import time
+from selenium.webdriver.common.keys import Keys
+
+## 打开chrome浏览器
+driver=webdriver.Edge()
+wait = WebDriverWait(driver, 10) 
+## 打开网页    
+driver.get("https://jinshuju.net/f/o8dKX9")
+
+# 姓名
+name_input = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/form/div[3]/div[1]/div[2]/div/div/div[2]/div[1]/div/span/span/input')))
+name_input.clear()
+name_input.send_keys('xxx')#在这写入你的姓名
+
+dorName = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@value="xvfU"]')))#16号楼: 4vyX 17号楼：Xr16  18号楼xvfU 
+dorName.click()
+
+#单元
+unitName = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@value="j0M6"]')))#1单元: j0M6 2：FGDc  3:JB3s
+unitName.click()
+
+#楼层
+floorName = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@value="jl9s"]')))#1: E5Lw 2：xL14  3:g1rC 4:zbem 5:ZMSn 6:uC4w 7:jl9s
+floorName.click()
+
+#套间号
+suiteName = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@value="uR3z"]')))#1: uR3z 2：5FWb  3:CY2j 4:tVSR 
+suiteName.click()
+
+#房间号
+roomName = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@value="lvSA"]')))#1: Houa 2：cEPN  3:lvSA 4:ovBR 5:AZdn 
+roomName.click()
+
+
+# 手机号
+phone_input = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/form/div[3]/div[1]/div[14]/div/div/div[2]/div[1]/div/span/div/span/input')))
+phone_input.clear()
+phone_input.send_keys('xxxxxxxxx')#在这写入你的手机号
+
+#选择火腿肠数量 1
+ham_input = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/form/div[3]/div[1]/div[15]/div/div/div[1]/div/div/div[2]/div[1]/div[3]/div[2]/input')))
+ham_input.clear()
+ham_input.send_keys('0') #限购一份
+
+#选择牛奶数量 1
+milk_input = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/form/div[3]/div[1]/div[15]/div/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/input')))
+milk_input.clear()
+milk_input.send_keys('0') #限购一份
+
+# 提交
+submit = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@class="ant-btn ant-btn-primary sc-jRQBWg elvOuI published-form__submit form-theme--submit-button"]')))
+submit.click()
